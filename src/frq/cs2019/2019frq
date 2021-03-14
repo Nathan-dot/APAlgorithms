@@ -1,0 +1,156 @@
+FRQ1:
+public static int numberOfLeapYears(int year1, int year2){
+    int count = 0;
+    for(int i = year1; i <= year2; i++) {
+        if(isLeapYear(i)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+
+
+
+public static int dayOfWeek(int month, int day, int year) {
+    int firstday = firstDayOfYear(year);
+    int addeddays = dayOfYear(month, day, year);
+    for(int i = 0; i < addeddays; i++) {
+        firstday++;
+        if(firstday == 7) {
+            firstday = 0;
+        }
+    }
+    return firstday;
+}
+
+
+FRQ2:
+public class StepTracker() {
+    private int minSteps;
+    private int activeDays;
+    private int averageSteps;
+    private int totalDays;
+    private int totalSteps;
+
+    public StepTracker(int minSteps) {
+        this.minSteps = minSteps;
+        activeDays = 0;
+        averageSteps = 0;
+        totalDays = 0;
+        totalSteps = 0;
+    }
+
+    public void addDailySteps(int steps) {
+        if(steps >= minSteps) {
+            activeDays++;
+        }
+        totalDays++;
+        totalSteps += steps;
+    }
+
+    public int activeDays() {
+        return activeDays;
+    }
+
+    public int averageSteps() {
+        if(totalDays == 0  || totalSteps == 0) {
+            return 0;
+        }
+        averageSteps = totalSteps / totalDays;
+        return averageSteps;
+    }
+
+}
+
+
+
+
+FRQ3:
+public class Delimiters() {
+    private String openDel;
+    private String closeDel;
+    public ArrayList<String> getDelimitersList(String[] tokens) {
+        ArrayList<String> a = new ArrayList<String>();
+        for(String i : token) {
+            if(i.equals(openDel) || i.equals(closeDel)) {
+                a.add(i);
+            }
+        }
+        return a;
+    }
+
+    public boolean isBalanced(ArrayList<String> delimiters) {
+        int open = 0;
+        int closed = 0;
+        for(String d : delimiters) {
+            if(d.equals(openDel)) {
+                open++;
+            }
+            if(d.equals(closeDel)){
+                closed++;
+            }
+            if(closed > open) {
+                return false;
+            }
+        }
+        return open == closed;
+    }
+}
+
+FRQ4:
+//40% probability of being set to on
+//btween 0(inclusive) to 1(exclusive)
+
+public class LightBoard{
+    private boolean[][] lights;
+    public LightBoard(int numRows, int numCols) {
+        a = new boolean[numRows][numCols];
+        for(int i = 0; i < a.length; i++) {
+            for(int j = 0; j < a[0].length; j++) {
+                if(Math.random() <= 0.4) {
+                    a[i][j] = true;
+                }
+                else{
+                    a[i][j] = false;
+                }
+            }
+        }
+    }
+}
+
+public boolean evaluateLight(int row, int col) {
+    int numColumn = 0;
+    int numColumn1 = 0;
+    if(a[row][col] == true){
+        for(int i = 0; i < a.length; i++) {
+            if(a[i][col] == true) {
+                numColumn++;
+            }
+        }
+        if(numColumn % 2 == 0) {
+            return false;
+        }
+    }
+    if(a[row][col] == false){
+        for(int i = 0; i < a.length; i++) {
+            if(a[i][col] == true) {
+                numColumn1++;
+            }
+        }
+        if(numColumn1 % 3 == 0) {
+            return true;
+        }
+    }
+    return a[row][col];
+}
+
+
+
+
+
+
+
+
+
